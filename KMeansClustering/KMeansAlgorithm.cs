@@ -27,7 +27,7 @@ namespace KMeansClustering
 
             for (var i = 0; i < iterations; i++)
             {
-                actualIterations = i;
+                actualIterations = (i+1);
                 var oldCentroids = new List<Vector>(centroids);
                 foreach (var vector in vectors)
                 {
