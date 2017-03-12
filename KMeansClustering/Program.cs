@@ -34,6 +34,10 @@ namespace KMeansClustering
             var iterations = int.Parse(Console.ReadLine());
             Console.Write("How many clusters would you like to create: ");
             var clusters = int.Parse(Console.ReadLine());
+            while (clusters > vectors.Count()) {
+                Console.Write("You can't create more clusters than datapoints, please select a value lower than " + vectors.Count() + ": ");
+                clusters = int.Parse(Console.ReadLine());
+            }
             Console.WriteLine("*******************************************");
 
             //Run the main K-Means Algorithm Loop
