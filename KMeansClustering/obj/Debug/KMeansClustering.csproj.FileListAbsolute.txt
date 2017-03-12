@@ -1,0 +1,12 @@
+E:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\bin\Debug\KMeansClustering.exe.config
+E:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\bin\Debug\KMeansClustering.exe
+E:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\bin\Debug\KMeansClustering.pdb
+E:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\obj\Debug\KMeansClustering.csprojResolveAssemblyReference.cache
+E:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\obj\Debug\KMeansClustering.exe
+E:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\obj\Debug\KMeansClustering.pdb
+C:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\bin\Debug\KMeansClustering.exe.config
+C:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\obj\Debug\KMeansClustering.exe
+C:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\obj\Debug\KMeansClustering.pdb
+C:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\bin\Debug\KMeansClustering.exe
+C:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\bin\Debug\KMeansClustering.pdb
+C:\Dropbox\INF_Jaar_3\Data Science 2\KMeansClustering\KMeansClustering\obj\Debug\KMeansClustering.csprojResolveAssemblyReference.cache
