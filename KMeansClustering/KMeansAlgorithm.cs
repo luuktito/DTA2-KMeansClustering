@@ -38,8 +38,8 @@ namespace KMeansClustering
                 //Recompute the centroids of each cluster using the updated mean of all vectors
                 RecomputeCentroids();
 
-                //Check if any centroids have changed position, if not then break
-                if (!HaveCentroidsChanged(oldCentroids)) {
+                //Check if all centroids have stopped changing, if so then break
+                if (HaveCentroidsStopped(oldCentroids)) {
                     break;
                 }
             }
@@ -83,15 +83,15 @@ namespace KMeansClustering
         }
 
         //Check if any centroids have changed position, checks if the list of vector points is the same as last iteration
-        private bool HaveCentroidsChanged(List<Vector> oldCentroids) {
-            var CentroidsChanged = false;
+        private bool HaveCentroidsStopped(List<Vector> oldCentroids) {
+            var CentroidsStopped = false;
             for (int i = 0; i < centroids.Count(); i++) {
-                if (!centroids[i].points.SequenceEqual(oldCentroids[i].points))
+                if (centroids[i].points.SequenceEqual(oldCentroids[i].points))
                 {
-                    CentroidsChanged = true;
+                    CentroidsStopped = true;
                 }
             }
-            return CentroidsChanged;
+            return CentroidsStopped;
         }
 
         //Computes the Sum of Squared Errors of all clusters after the program has run
