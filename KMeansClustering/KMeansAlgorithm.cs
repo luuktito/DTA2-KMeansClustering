@@ -9,17 +9,33 @@ namespace KMeansClustering
         int iterations;
         int actualIterations;
         int clusters;
+        bool debug;
         double SSE;
         List<Vector> vectors;
         List<Vector> centroids;
 
-        public KMeansAlgorithm(int iterations, int clusters, List<Vector> vectors)
+        public double SSE1
+        {
+            get
+            {
+                return SSE;
+            }
+
+            set
+            {
+                SSE = value;
+            }
+        }
+
+        public KMeansAlgorithm(int iterations, int clusters, List<Vector> vectors, bool debug)
         {
             this.iterations = iterations;
             this.clusters = clusters;
             this.vectors = vectors;
+            this.debug = debug;
             centroids = new List<Vector>();
         }
+
 
         public void MainLoop() {
             //Generate a list of initial clusters
@@ -101,47 +117,54 @@ namespace KMeansClustering
                 var clusterSet = vectors.Where(vector => vector.centroid == i).ToList();
 
                 foreach (var vector in clusterSet) {
-                    SSE += Math.Pow(Vector.Distance(centroids[i], vector), 2);
+                    SSE1 += Math.Pow(Vector.Distance(centroids[i], vector), 2);
                 }
             }
         }
 
         //Print the results of the algorithm
         public void PrintResults() {
-            Console.WriteLine("K-Means Results:");
-            Console.WriteLine("Dataset size: " + vectors.Count() + " items, " + vectors.First().Size() + " dimensions");
-            Console.WriteLine("Amount of selected iterations: " + iterations);
-            Console.WriteLine("Amount of selected clusters: " + clusters);
-            Console.WriteLine("Actual amount of iterations: " + actualIterations);
-            Console.WriteLine("SSE: " + SSE.ToString("0.##"));
+            if (debug != true)
+            {
+                Console.WriteLine("K-Means Results:");
+                Console.WriteLine("Dataset size: " + vectors.Count() + " items, " + vectors.First().Size() + " dimensions");
+                Console.WriteLine("Amount of selected iterations: " + iterations);
+                Console.WriteLine("Amount of selected clusters: " + clusters);
+                Console.WriteLine("Actual amount of iterations: " + actualIterations);
+                Console.WriteLine("SSE: " + SSE1.ToString("0.##"));
 
-            Console.WriteLine("");
+                Console.WriteLine("");
 
-            for (int i = 0; i < centroids.Count(); i++) {
-                var clusterSet = vectors.Where(vector => vector.centroid == i).ToList();
-                var newCluster = new Vector(vectors.First().Size()).Sum(clusterSet);
-                var newClusterDictionary = newCluster.points.Select((value, index) => new { value, index }).ToDictionary(x => x.index, x => x.value);
-                var orderedCluster = newClusterDictionary.OrderByDescending(x => x.Value);
+                for (int i = 0; i < centroids.Count(); i++)
+                {
+                    var clusterSet = vectors.Where(vector => vector.centroid == i).ToList();
+                    var newCluster = new Vector(vectors.First().Size()).Sum(clusterSet);
+                    var newClusterDictionary = newCluster.points.Select((value, index) => new { value, index }).ToDictionary(x => x.index, x => x.value);
+                    var orderedCluster = newClusterDictionary.OrderByDescending(x => x.Value);
 
-                Console.WriteLine("Cluster " + i + " contains " + clusterSet.Count() + " items (customers)");
-                Console.WriteLine("*******************************************");
-                
-                foreach (var vector in orderedCluster) {
-                    if (vector.Value > 0)
+                    Console.WriteLine("Cluster " + i + " contains " + clusterSet.Count() + " items (customers)");
+                    Console.WriteLine("*******************************************");
+
+                    foreach (var vector in orderedCluster)
                     {
-                        Console.Write("Wine " + (vector.Key + 1)  + " was purchased " + vector.Value);
-                        if (vector.Value == 1) {
-                            Console.WriteLine(" time");
-                        }
-                        else {
-                            Console.WriteLine(" times");
+                        if (vector.Value > 0)
+                        {
+                            Console.Write("Wine " + (vector.Key + 1) + " was purchased " + vector.Value);
+                            if (vector.Value == 1)
+                            {
+                                Console.WriteLine(" time");
+                            }
+                            else
+                            {
+                                Console.WriteLine(" times");
+                            }
                         }
                     }
+                    Console.WriteLine("");
                 }
-                Console.WriteLine("");
+                Console.SetCursorPosition(0, 0);
+                Console.ReadKey(true);
             }
-            Console.SetCursorPosition(0, 0);
-            Console.ReadKey(true);
         }
     }
 }

@@ -40,8 +40,21 @@ namespace KMeansClustering
             }
             Console.WriteLine("*******************************************");
 
+            //Get the best value for clusters (amount) by minimizing the SSE
+            double[] SSEGroup = new double[10];
+            for (var i = 1; i < 11; i++)
+            {
+                var KMeansAlgorithmDebug = new KMeansAlgorithm(iterations, i, vectors, true);
+                KMeansAlgorithmDebug.MainLoop();
+                SSEGroup[i-1] = KMeansAlgorithmDebug.SSE1;
+            }
+            Console.WriteLine("Best value for k (amount of clusters) after minimizing the SSE for k = 1 through 10:");
+            Console.WriteLine("k = " + Convert.ToInt32(Array.IndexOf(SSEGroup, SSEGroup.Min()) + 1) + ": " + SSEGroup.Min());
+            Console.WriteLine("Increasing k will almost always minimize the SSE, so it makes sense that k is high");
+            Console.WriteLine("*******************************************");
+
             //Run the main K-Means Algorithm Loop
-            var KMeansAlgorithm = new KMeansAlgorithm(iterations, clusters, vectors);
+            var KMeansAlgorithm = new KMeansAlgorithm(iterations, clusters, vectors, false);
             KMeansAlgorithm.MainLoop();
         }
     }
